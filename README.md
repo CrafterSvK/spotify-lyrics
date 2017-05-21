@@ -19,6 +19,8 @@ Bash script to show lyrics from spotify name of song and artist name.
 ## Known issues
 * Song with a () in a name won't show.
 * Live recorded song will also not display because of problem above.
+* Program needs to be properly closed to delete temporary directory from /tmp
+
 ## WARNING
 Don't use this program commercialy AZLyrics's license is prohibiting the usage of their lyrics.
 
