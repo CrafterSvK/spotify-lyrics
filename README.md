@@ -9,12 +9,12 @@ Bash script to show lyrics from spotify name of song and artist name.
 
 ## Installation
 * Download awk script from [here](https://gist.github.com/csssuf/13213f23191b92a7ce77#file-spotify_song-awk).
-* Put it in directory with getLyrics.sh and getInfo.sh.
+* Put it in directory with `getLyrics.sh` and `getInfo.sh`.
 
 ## Usage
 * Run spotify.
 * Play a song.
-* And run a script.
+* Run `getLyrics.sh`.
 
 ## Known issues
 * Song with a () in a name won't show.
