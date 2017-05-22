@@ -6,6 +6,7 @@ Bash script to show lyrics from spotify name of song and artist name.
 * Spotify (obviously)
 * w3m (for displaying lyrics)
 * wget (for downloading lyrics from AZLyrics.com)
+* awk script from [@csssuf](https://github.com/csssuf) [download here](https://gist.github.com/csssuf/13213f23191b92a7ce77#file-spotify_song-awk)
 
 ## Installation
 * Download awk script from [here](https://gist.github.com/csssuf/13213f23191b92a7ce77#file-spotify_song-awk).
