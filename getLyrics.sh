@@ -4,6 +4,7 @@
 # COMMERCIAL USE IS PROHIBITED
 
 #get song information
+rm -rf /tmp/lyrics.*
 tmp=$(mktemp -d /tmp/lyrics.XXX)
 touch $tmp/lyrics.html
 
@@ -44,5 +45,3 @@ echo "</center>" >> $tmp/lyrics.html
 
 #show the lyrics
 w3m $tmp/lyrics.html
-#always quit with q and y
-rm -rf $tmp
