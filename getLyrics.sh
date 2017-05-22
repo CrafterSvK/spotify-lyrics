@@ -1,7 +1,4 @@
 #!/bin/bash
-#Dependencies:
-#wget
-#w3m
 # Made by Jakub Janek 2017
 # All lyrics are provided by AZLyrics
 # COMMERCIAL USE IS PROHIBITED
