@@ -17,14 +17,16 @@ song_name_escaped=$(echo $song_name_raw | sed -e 's/[^a-zA-Z0-9,._+@%/-]/\\&/g; 
 both_escaped=$artist_escaped"\ \-\ "$song_name_escaped
 
 #trimm the name of song and artist to azlyrics format
-artist_trimm="${artist_raw//[[:space:]]/}"
-artist="${artist_trimm,,}"
+artist_trim="${artist_raw//[[:space:]]/}"
+artist_trim2="${artist_trim//\/}"
+artist="${artist_trim2,,}"
 
 #TODO: trim brackets with text inside them
 song_name_trim="${song_name_raw//[[:space:]]/}"
 song_name_trim2="${song_name_trim%\?}"
 song_name_trim3="${song_name_trim2//\'}"
-song_name="${song_name_trim3,,}"
+song_name_trim4="${song_name_trim3//\/}"
+song_name="${song_name_trim4,,}"
 
 #make url
 website="http://www.azlyrics.com/lyrics/"$artist"/"$song_name".html"
