@@ -9,7 +9,7 @@ dir=$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)
 rm -rf /tmp/lyrics.*
 tmp=$(mktemp -d /tmp/lyrics.XXX)
 touch $tmp/lyrics.html
-echo ${dir}
+
 artist_raw=$(${dir}/getInfo.sh artist)
 song_name_raw=$(${dir}/getInfo.sh song)
 
@@ -28,7 +28,16 @@ song_name_trim="${song_name_raw//[[:space:]]/}"
 song_name_trim2="${song_name_trim%\?}"
 song_name_trim3="${song_name_trim2//\'}"
 song_name_trim4="${song_name_trim3//\/}"
-song_name="${song_name_trim4,,}"
+song_name_trim7=$song_name_trim4
+
+if [[ $song_name_trim4 == *[{}\(\)\[\]]* ]]; then
+	song_name_brackets="$(echo $song_name_trim4 | cut -d "(" -f2 | cut -d ")" -f1)"
+	song_name_trim5="${song_name_trim4//$song_name_brackets}"
+	song_name_trim6="${song_name_trim5//\(}"
+	song_name_trim7="${song_name_trim6//\)}"
+fi
+
+song_name="${song_name_trim7,,}"
 
 #make url
 website="http://www.azlyrics.com/lyrics/"$artist"/"$song_name".html"
