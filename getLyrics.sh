@@ -3,13 +3,15 @@
 # All lyrics are provided by AZLyrics
 # COMMERCIAL USE IS PROHIBITED
 
+dir=$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)
+
 #get song information
 rm -rf /tmp/lyrics.*
 tmp=$(mktemp -d /tmp/lyrics.XXX)
 touch $tmp/lyrics.html
-
-artist_raw=$(./getInfo.sh artist)
-song_name_raw=$(./getInfo.sh song)
+echo ${dir}
+artist_raw=$(${dir}/getInfo.sh artist)
+song_name_raw=$(${dir}/getInfo.sh song)
 
 #escape song_name and artist
 artist_escaped=$(echo $artist_raw | sed -e 's/[^a-zA-Z0-9,._+@%/-]/\\&/g; 1{$s/^$/""/}; 1!s/^/"/; $!s/$/"/')
