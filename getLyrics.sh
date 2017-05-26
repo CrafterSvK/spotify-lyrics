@@ -15,10 +15,12 @@ song_name_raw=$(${dir}/getInfo.sh song)
 
 #escape song_name and artist
 artist_escaped=$(echo $artist_raw | sed -e 's/[^a-zA-Z0-9,._+@%/-]/\\&/g; 1{$s/^$/""/}; 1!s/^/"/; $!s/$/"/')
-song_name_escaped=$(echo $song_name_raw | sed -e 's/[^a-zA-Z0-9,._+@%/-]/\\&/g; 1{$s/^$/""/}; 1!s/^/"/; $!s/$/"/')
+song_name_escaped_first=$(echo $song_name_raw | sed -e 's/[^a-zA-Z0-9,._+@%/-]/\\&/g; 1{$s/^$/""/}; 1!s/^/"/; $!s/$/"/')
+song_name_escaped=${song_name_escaped_first%%-*}
+
 both_escaped=$artist_escaped"\ \-\ "$song_name_escaped
 
-#trimm the name of song and artist to azlyrics format
+#trim the name of song and artist to azlyrics format
 artist_trim="${artist_raw//[[:space:]]/}"
 artist_trim2="${artist_trim//\/}"
 artist="${artist_trim2,,}"
@@ -28,16 +30,18 @@ song_name_trim="${song_name_raw//[[:space:]]/}"
 song_name_trim2="${song_name_trim%\?}"
 song_name_trim3="${song_name_trim2//\'}"
 song_name_trim4="${song_name_trim3//\/}"
-song_name_trim7=$song_name_trim4
+song_name_trim5="${song_name_trim4%%-*}"
+song_name_trim8=$song_name_trim5
 
+#trim brackets if they are available
 if [[ $song_name_trim4 == *[{}\(\)\[\]]* ]]; then
-	song_name_brackets="$(echo $song_name_trim4 | cut -d "(" -f2 | cut -d ")" -f1)"
-	song_name_trim5="${song_name_trim4//$song_name_brackets}"
-	song_name_trim6="${song_name_trim5//\(}"
-	song_name_trim7="${song_name_trim6//\)}"
+	song_name_brackets="$(echo $song_name_trim5 | cut -d "(" -f2 | cut -d ")" -f1)"
+	song_name_trim6="${song_name_trim5//$song_name_brackets}"
+	song_name_trim7="${song_name_trim6//\(}"
+	song_name_trim8="${song_name_trim7//\)}"
 fi
 
-song_name="${song_name_trim7,,}"
+song_name="${song_name_trim8,,}"
 
 #make url
 website="http://www.azlyrics.com/lyrics/"$artist"/"$song_name".html"
