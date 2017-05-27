@@ -1,4 +1,4 @@
-# spotify-lyrics
+# spotify-lyrics - beta branch
 Bash script to show lyrics from spotify name of song and artist name.
 
 ## Dependencies
@@ -10,7 +10,7 @@ Bash script to show lyrics from spotify name of song and artist name.
 
 ## Installation
 * Download awk script from [here](https://gist.github.com/csssuf/13213f23191b92a7ce77#file-spotify_song-awk).
-* Put it in directory with `getLyrics.sh` and `getInfo.sh`.
+* Put it in directory with `getLyrics.sh`.
 
 ## Usage
 * Run spotify.
@@ -21,5 +21,5 @@ Bash script to show lyrics from spotify name of song and artist name.
 Don't use this program commercialy AZLyrics's license is prohibiting the usage of their lyrics.
 
 ## Credits
-* [@rpieja](https://github.com/rpieja) - For inspiration and getInfo.sh script.
 * [@csssuf](https://github.com/csssuf) - For awk script.
+* My friend which helped me with coding this script.
