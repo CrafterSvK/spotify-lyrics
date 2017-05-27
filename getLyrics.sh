@@ -69,10 +69,9 @@ artist_escaped=$(escape "$artist_raw")
 song_escaped=$(escape "$song_raw")
 
 both_escaped=$(join "$artist_escaped" "$song_escaped")
-echo $both_escaped
 
 website="http://www.azlyrics.com/lyrics/"$artist"/"$song".html"
-echo $website
+
 wget -q --header="Accept: text/html" --user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:21.0) Gecko/20100101 Firefox/21.0" -O $tmp/lyrics.html $website
 
 #remove unwanted things
