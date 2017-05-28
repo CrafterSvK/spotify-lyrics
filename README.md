@@ -20,6 +20,10 @@ Bash script to show lyrics from spotify name of song and artist name.
 ## WARNING
 Don't use this program commercialy AZLyrics's license is prohibiting the usage of their lyrics.
 
+## TODO list
+* Make script MacOS compatible (Which is hard because there is no DBus on Mac defaultly)
+* Rewrite to Python 3
+
 ## Credits
 * [@csssuf](https://github.com/csssuf) - For awk script.
 * My friend which helped me with coding this script.
