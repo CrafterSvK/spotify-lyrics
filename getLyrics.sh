@@ -52,7 +52,7 @@ function trim {
 
 function trim_the {
 	#param: $1 - This string will be trimmed from The
-	local trim="${1//The}"
+	local trim="${1//the}"
 	local result=$trim
 
 	echo $result
