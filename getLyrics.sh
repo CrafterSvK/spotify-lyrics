@@ -34,20 +34,27 @@ function trim {
 	local trim3="${trim2//\'}"
 	local trim4="${trim3//\/}"
 	local trim5="${trim4%%-*}"
-	local trim6="${trim5//The}"
-	local trim7="${trim6//.}"	
+	local trim6="${trim5//.}"	
 
-	local trim10=$trim7
+	local trim9=$trim6
 
 	#trim brackets if they are available
 	if [[ $trim6 == *[{}\(\)\[\]]* ]]; then
-		local string_brackets="$(echo $trim7 | cut -d "(" -f2 | cut -d ")" -f1)"
-		local trim8="${trim7//$string_brackets}"
-		local trim9="${trim8//\(}"
-		local trim10="${trim9//\)}"
+		local string_brackets="$(echo $trim6 | cut -d "(" -f2 | cut -d ")" -f1)"
+		local trim7="${trim6//$string_brackets}"
+		local trim8="${trim7//\(}"
+		local trim9="${trim8//\)}"
 	fi
 
-	local result="${trim10,,}"
+	local result="${trim9,,}"
+	echo $result
+}
+
+function trim_the {
+	#param: $1 - This string will be trimmed from The
+	local trim="${1//The}"
+	local result=$trim
+
 	echo $result
 }
 
@@ -63,7 +70,8 @@ tmp=$(mktemp -d /tmp/lyrics.XXX)
 touch $tmp/lyrics.html
 
 artist_raw=$(get_info artist)
-artist=$(trim "$artist_raw")
+artist_with_the=$(trim "$artist_raw")
+artist=$(trim_the "$artist_with_the")
 
 song_raw=$(get_info song)
 song=$(trim "$song_raw")
