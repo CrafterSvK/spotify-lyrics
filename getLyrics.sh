@@ -35,18 +35,19 @@ function trim {
 	local trim4="${trim3//\/}"
 	local trim5="${trim4%%-*}"
 	local trim6="${trim5//The}"
+	local trim7="${trim6//.}"	
 
-	local trim9=$trim6
+	local trim10=$trim7
 
 	#trim brackets if they are available
-	if [[ $trim5 == *[{}\(\)\[\]]* ]]; then
-		local string_brackets="$(echo $trim6 | cut -d "(" -f2 | cut -d ")" -f1)"
-		local trim7="${trim6//$string_brackets}"
-		local trim8="${trim7//\(}"
-		local trim9="${trim8//\)}"
+	if [[ $trim6 == *[{}\(\)\[\]]* ]]; then
+		local string_brackets="$(echo $trim7 | cut -d "(" -f2 | cut -d ")" -f1)"
+		local trim8="${trim7//$string_brackets}"
+		local trim9="${trim8//\(}"
+		local trim10="${trim9//\)}"
 	fi
 
-	local result="${trim9,,}"
+	local result="${trim10,,}"
 	echo $result
 }
 
@@ -73,6 +74,8 @@ song_escaped=$(escape "$song_raw")
 both_escaped=$(join "$artist_escaped" "$song_escaped")
 
 website="http://www.azlyrics.com/lyrics/"$artist"/"$song".html"
+
+echo $website
 
 wget -q --header="Accept: text/html" --user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:21.0) Gecko/20100101 Firefox/21.0" -O $tmp/lyrics.html $website
 
