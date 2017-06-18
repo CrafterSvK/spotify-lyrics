@@ -20,6 +20,7 @@ Don't use this program commercialy AZLyrics's license is prohibiting the usage o
 
 ## TODO list
 * Make script MacOS compatible (Which is hard because there is no DBus on Mac defaultly)
+* Make script Windows compatible (I haven't find way to do this and I don't like batch needs rewrite in other language)
 * Rewrite to Python 3
 
 ## Credits
