@@ -35,18 +35,18 @@ function trim {
 	local trim4="${trim3//\/}"
 	local trim5="${trim4%%-*}"
 	local trim6="${trim5//.}"	
-
-	local trim9=$trim6
+	local trim7="${trim6//\!}"
+	local trim10=$trim7
 
 	#trim brackets if they are available
-	if [[ $trim6 == *[{}\(\)\[\]]* ]]; then
-		local string_brackets="$(echo $trim6 | cut -d "(" -f2 | cut -d ")" -f1)"
-		local trim7="${trim6//$string_brackets}"
-		local trim8="${trim7//\(}"
-		local trim9="${trim8//\)}"
+	if [[ $trim7 == *[{}\(\)\[\]]* ]]; then
+		local string_brackets="$(echo $trim7 | cut -d "(" -f2 | cut -d ")" -f1)"
+		local trim8="${trim7//$string_brackets}"
+		local trim9="${trim8//\(}"
+		local trim10="${trim9//\)}"
 	fi
 
-	local result="${trim9,,}"
+	local result="${trim10,,}"
 	echo $result
 }
 
