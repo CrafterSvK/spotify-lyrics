@@ -9,6 +9,7 @@ Bash script to show lyrics from spotify name of song and artist name.
 
 ## Installation
 Clone repository into Computer.
+Make symlink into /bin folder so you can run it from terminal everywhere.
 
 ## Usage
 * Run spotify.
