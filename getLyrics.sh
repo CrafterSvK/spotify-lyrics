@@ -52,10 +52,16 @@ function trim {
 
 function trim_the {
 	#param: $1 - This string will be trimmed from The
-	local trim="${1//the}"
-	local result=$trim
+	
+    detect=$(echo "${1}" | cut -c1-3)
+    if [[ $detect == "the" ]]; then
+        local trim="${1//the}"
+	    local result=$trim
 
-	echo $result
+	    echo $result
+    else
+        echo ${1}
+    fi
 }
 
 function join {
@@ -65,16 +71,39 @@ function join {
 	echo $result
 }
 
+function get_spotify {
+    artist_raw=$(get_info artist)
+    artist_with_the=$(trim "$artist_raw")
+    artist=$(trim_the "$artist_with_the")
+
+    song_raw=$(get_info song)
+    song=$(trim "$song_raw")
+}
+
+function get_manual {
+    artist_raw=$1
+    artist_with_the=$(trim "$artist_raw")
+    artist=$(trim_the "$artist_with_the")   
+
+    song_raw=$2
+    song=$(trim "$song_raw")
+}
+
 rm -rf /tmp/lyrics.*
 tmp=$(mktemp -d /tmp/lyrics.XXX)
 touch $tmp/lyrics.html
 
-artist_raw=$(get_info artist)
-artist_with_the=$(trim "$artist_raw")
-artist=$(trim_the "$artist_with_the")
+if [[ $1 == "-s" ]]; then
+    get_spotify
+else
+    echo "Artist"
+    read -r artist_input
+    
+    echo "Song name"
+    read -r song_input
+    get_manual "$artist_input" "$song_input"
+fi
 
-song_raw=$(get_info song)
-song=$(trim "$song_raw")
 
 artist_escaped=$(escape "$artist_raw")
 song_escaped=$(escape "$song_raw")
@@ -82,8 +111,6 @@ song_escaped=$(escape "$song_raw")
 both_escaped=$(join "$artist_escaped" "$song_escaped")
 
 website="http://www.azlyrics.com/lyrics/"$artist"/"$song".html"
-
-echo $website
 
 wget -q --header="Accept: text/html" --user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:21.0) Gecko/20100101 Firefox/21.0" -O $tmp/lyrics.html $website
 
