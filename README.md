@@ -11,10 +11,14 @@ Bash script to show lyrics from spotify name of song and artist name.
 Clone repository into Computer.
 Make symlink into /bin folder so you can run it from terminal everywhere.
 
-## Usage
+## Usage with spotify
 * Run spotify.
 * Play a song.
+* Run `getLyrics.sh -s`.
+
+## Without spotify
 * Run `getLyrics.sh`.
+* Give it artist and song name
 
 ## WARNING
 Don't use this program commercialy AZLyrics's license is prohibiting the usage of their lyrics.
