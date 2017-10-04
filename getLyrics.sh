@@ -36,17 +36,18 @@ function trim {
 	local trim5="${trim4%%-*}"
 	local trim6="${trim5//.}"	
 	local trim7="${trim6//\!}"
-	local trim10=$trim7
+	local trim8="${trim7//,}"
+    local trim11=$trim8
 
 	#trim brackets if they are available
-	if [[ $trim7 == *[{}\(\)\[\]]* ]]; then
-		local string_brackets="$(echo $trim7 | cut -d "(" -f2 | cut -d ")" -f1)"
-		local trim8="${trim7//$string_brackets}"
-		local trim9="${trim8//\(}"
-		local trim10="${trim9//\)}"
+	if [[ $trim8 == *[{}\(\)\[\]]* ]]; then
+		local string_brackets="$(echo $trim8 | cut -d "(" -f2 | cut -d ")" -f1)"
+		local trim9="${trim8//$string_brackets}"
+		local trim10="${trim9//\(}"
+		local trim11="${trim10//\)}"
 	fi
 
-	local result="${trim10,,}"
+	local result="${trim11,,}"
 	echo $result
 }
 
@@ -93,7 +94,7 @@ rm -rf /tmp/lyrics.*
 tmp=$(mktemp -d /tmp/lyrics.XXX)
 touch $tmp/lyrics.html
 
-if [[ $1 == "-s" ]]; then
+if [[ -z $1 ]]; then
     get_spotify
 else
     echo "Artist"
