@@ -65,6 +65,23 @@ function trim_the {
     fi
 }
 
+function detect_override {
+    #Overriding songs that are violating the algorithm
+
+    #param: $1 - Passing artist name for override
+    #param: $2 - Passing song name for override  
+
+    local file="$(cat $dir/override.txt)"
+    local artist_name_search="$(echo $file | grep $1)"
+    local song_name_search="$(echo $artist_name_search | grep $2)"
+    
+    local result_all="$(echo $song_name_search | cut -d ":" -f2)"
+    local song="$(echo $result_all | cut -d "-" -f2)"
+
+    local result=$song 
+    echo $result
+}
+
 function join {
 	#param: $1 joins as the first one
 	#param: $2 joins to $1
@@ -105,13 +122,18 @@ else
     get_manual "$artist_input" "$song_input"
 fi
 
-
 artist_escaped=$(escape "$artist_raw")
 song_escaped=$(escape "$song_raw")
 
 both_escaped=$(join "$artist_escaped" "$song_escaped")
 
-website="http://www.azlyrics.com/lyrics/"$artist"/"$song".html"
+override=$(detect_override "$artist" "$song")
+
+if [[ -z $override ]]; then
+    website="http://www.azlyrics.com/lyrics/"$artist"/"$song".html"
+else 
+    website="http://www.azlyrics.com/lyrics/"$artist"/"$override".html"
+fi
 
 wget -q --header="Accept: text/html" --user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:21.0) Gecko/20100101 Firefox/21.0" -O $tmp/lyrics.html $website
 

@@ -22,6 +22,10 @@ Make symlink into /bin folder so you can run it from terminal everywhere.
 * Run `getLyrics.sh`.
 * Give it artist and song name
 
+## Override (Songs that violates with algorithm)
+* If you find a song that violates with algorithm for example AWOLNATION - Hollow Moon (Bad Wolf) just add it into override.txt file 
+* How to write override (all in lowercase): ArtistName-SongNameAfterAlgorithm:ArtistName-SongOverride
+
 ## WARNING
 Don't use this program commercialy AZLyrics's license is prohibiting the usage of their lyrics.
 
