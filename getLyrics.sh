@@ -75,8 +75,7 @@ function detect_override {
     local artist_name_search="$(echo $file | grep $1)"
     local song_name_search="$(echo $artist_name_search | grep $2)"
     
-    local result_all="$(echo $song_name_search | cut -d ":" -f2)"
-    local song="$(echo $result_all | cut -d "-" -f2)"
+    local song="$(echo $song_name_search | cut -d ":" -f2)" 
 
     local result=$song 
     echo $result
