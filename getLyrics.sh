@@ -37,17 +37,18 @@ function trim {
 	local trim6="${trim5//.}"	
 	local trim7="${trim6//\!}"
 	local trim8="${trim7//,}"
-    local trim11=$trim8
+	local trim9="${trim8//&}"
+	local trim12=$trim9
 
 	#trim brackets if they are available
-	if [[ $trim8 == *[{}\(\)\[\]]* ]]; then
-		local string_brackets="$(echo $trim8 | cut -d "(" -f2 | cut -d ")" -f1)"
-		local trim9="${trim8//$string_brackets}"
-		local trim10="${trim9//\(}"
-		local trim11="${trim10//\)}"
+	if [[ $trim9 == *[{}\(\)\[\]]* ]]; then
+		local string_brackets="$(echo $trim9 | cut -d "(" -f2 | cut -d ")" -f1)"
+		local trim10="${trim9//$string_brackets}"
+		local trim11="${trim10//\(}"
+		local trim12="${trim11//\)}"
 	fi
 
-	local result="${trim11,,}"
+	local result="${trim12,,}"
 	echo $result
 }
 
@@ -149,5 +150,3 @@ echo "</center>" >> $tmp/lyrics.html
 
 #show the lyrics
 w3m $tmp/lyrics.html
-
-
