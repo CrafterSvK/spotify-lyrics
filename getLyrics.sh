@@ -1,7 +1,7 @@
 #!/bin/bash
 dir=$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)
 
-key='BQBalmmv_2oc8cvOxwt8hIUkxxCCXoUgk-GH80C941QfNA63PrJMbp4SgdsHfH8Z7g23t73Cp_UFlYwVO2PesP-Q4s1qgUH8Wr0Wv64vlYx9Woex7fbO5oL6gnw702qPDyq45ypnw_R_DXQCPl54EY4'
+key='Insert WebAPI key (see README.md)'
 
 function getInfo {
     local endpoint=$(curl -s -X "GET" "https://api.spotify.com/v1/me/player/currently-playing?market=SK" -H "Accept: application/json" -H "Content-Type: application/json" -H "Authorization: Bearer $key")
