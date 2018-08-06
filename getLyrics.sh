@@ -40,8 +40,16 @@ info=$(getInfo)
 track_name=$(echo $info | jq -r ".item.name")
 author_name=$(echo $info | jq -r ".item.album.artists[].name")
 
-rm -rf /tmp/lyrics.*
-tmp=$(mktemp -d /tmp/lyrics.XXX)
+os=$(uname -o)
+
+if [[ $os == "GNU/Linux" ]]; then
+	folder=/tmp
+else
+	folder=temp
+fi
+		
+rm -rf $folder/lyrics.*
+tmp=$(mktemp -d $folder/lyrics.XXX)
 touch $tmp/lyrics.html
 
 artist_escaped=$(escape "$author_name")
