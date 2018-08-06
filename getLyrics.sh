@@ -47,7 +47,11 @@ if [[ $os == "GNU/Linux" ]]; then
 else
 	folder=temp
 fi
-		
+
+if [ ! -d temp ]; then
+  mkdir -p temp;
+fi
+
 rm -rf $folder/lyrics.*
 tmp=$(mktemp -d $folder/lyrics.XXX)
 touch $tmp/lyrics.html
