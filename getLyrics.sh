@@ -50,7 +50,7 @@ song_escaped=$(escape "$track_name")
 both_escaped=$(join "$artist_escaped" "$song_escaped")
 
 artist=$(adjust "$author_name")
-artist=$(echo $artist | sed -r -e 's/the//gi')
+artist=$(echo $artist | sed -r -e 's/^the//gi')
 song=$(adjust "$track_name")
 
 website="http://www.azlyrics.com/lyrics/"$artist"/"$song".html"
